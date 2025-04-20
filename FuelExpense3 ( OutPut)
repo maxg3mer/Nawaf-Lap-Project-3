@@ -1,6 +1,6 @@
-Type of Car             Start        End  Distance   Liters     SAR     Cost   Km/Liter    Liter/Km
+Type of Car           Start        End  Distance  Gallons   SAR    Cost       MPG       GPM
 ----------------------------------------------------------------------------------------------------
-Ford Taurus             ١٦٠٩٣      ١٦٩٠٠       ٨٠٧     ٥٠٫٠    ٢٫١٨   ١٠٩٫٠٠       ١٦٫١      ٠٫٠٦٢٠
-Chevrolet Tahoe         ٢٤١٤٠      ٢٤٨٢٠       ٦٨٠     ٧٤٫٠    ٢٫٣٣   ١٧٢٫٤٢        ٩٫٢      ٠٫١٠٨٨
-Hyundai Sonata          ٣٣٧٩٦      ٣٤٨١٤      ١٠١٨     ٤٥٫٠    ٢٫٠٠    ٩٠٫٠٠       ٢٢٫٦      ٠٫٠٤٤٢
-GMC Sierra              ٥١٥٠٠      ٥٢٢٥٠       ٧٥٠     ٦٧٫٠    ٢٫٢٠   ١٤٧٫٤٠       ١١٫٢      ٠٫٠٨٩٣
+Ford Taurus            6200       6700       500     13.7   2.20   30.14       36.5      0.0274
+Chevrolet Tahoe        7000       7525       525     20.5   2.25   46.13       25.6      0.0390
+Hyundai Sonata         8000       8600       600     12.3   2.18   26.81       48.8      0.0205
+GMC Sierra             9000       9500       500     19.2   2.19   42.05       26.0      0.0384
