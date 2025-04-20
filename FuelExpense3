@@ -1,0 +1,75 @@
+package Fuel3;
+
+import java.io.*;
+import java.util.Arrays;
+
+class Fuel3 {
+    String carModel;
+    double startKm;
+    double endKm;
+    double liters;
+    double pricePerLiterSAR;
+
+    Fuel3(String carModel, double startKm, double endKm, double liters, double pricePerLiterSAR) {
+        this.carModel = carModel;
+        this.startKm = startKm;
+        this.endKm = endKm;
+        this.liters = liters;
+        this.pricePerLiterSAR = pricePerLiterSAR;
+    }
+
+    double getDistanceKm() {
+        return endKm - startKm;
+    }
+
+    double getKmPerLiter() {
+        return getDistanceKm() / liters;
+    }
+
+    double getLiterPerKm() {
+        return liters / getDistanceKm();
+    }
+
+    double getCost() {
+        return liters * pricePerLiterSAR;
+    }
+
+    String getFormattedRow() {
+        return String.format("%-18s %10.0f %10.0f %9.0f %8.1f %7.2f %8.2f %10.1f %11.4f",
+                carModel, startKm, endKm, getDistanceKm(), liters, pricePerLiterSAR,
+                getCost(), getKmPerLiter(), getLiterPerKm());
+    }
+}
+
+public class FuelExpense3 {
+    public static void main(String[] args) {
+        Fuel3[] cars = {
+            new Fuel3("Ford Taurus", 16093, 16900, 50.0, 2.18),
+            new Fuel3("Chevrolet Tahoe", 24140, 24820, 74.0, 2.33),
+            new Fuel3("Hyundai Sonata", 33796, 34814, 45.0, 2.00),
+            new Fuel3("GMC Sierra", 51500, 52250, 67.0, 2.20)
+        };
+
+        String header = String.format("%-18s %10s %10s %9s %8s %7s %8s %10s %11s",
+                "Type of Car", "Start", "End", "Distance", "Liters", "SAR", "Cost", "Km/Liter", "Liter/Km");
+        String line = "----------------------------------------------------------------------------------------------------";
+
+        System.out.println(header);
+        System.out.println(line);
+
+        try {
+            PrintWriter writer = new PrintWriter("222Proj.Log");
+            writer.println(header);
+            writer.println(line);
+
+            Arrays.stream(cars).map(Fuel3::getFormattedRow).forEach(row -> {
+                System.out.println(row);
+                writer.println(row);
+            });
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
