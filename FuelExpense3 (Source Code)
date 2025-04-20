@@ -1,57 +1,55 @@
-package Fuel3;
-
 import java.io.*;
 import java.util.Arrays;
 
 class Fuel3 {
-    String carModel;
-    double startKm;
-    double endKm;
-    double liters;
-    double pricePerLiterSAR;
+    String carName;
+    double startMiles;
+    double endMiles;
+    double gallonsUsed;
+    double pricePerGallon;
 
-    Fuel3(String carModel, double startKm, double endKm, double liters, double pricePerLiterSAR) {
-        this.carModel = carModel;
-        this.startKm = startKm;
-        this.endKm = endKm;
-        this.liters = liters;
-        this.pricePerLiterSAR = pricePerLiterSAR;
+    Fuel3(String carName, double startMiles, double endMiles, double gallonsUsed, double pricePerGallon) {
+        this.carName = carName;
+        this.startMiles = startMiles;
+        this.endMiles = endMiles;
+        this.gallonsUsed = gallonsUsed;
+        this.pricePerGallon = pricePerGallon;
     }
 
-    double getDistanceKm() {
-        return endKm - startKm;
+    double getDistance() {
+        return endMiles - startMiles;
     }
 
-    double getKmPerLiter() {
-        return getDistanceKm() / liters;
+    double getMPG() {
+        return getDistance() / gallonsUsed;
     }
 
-    double getLiterPerKm() {
-        return liters / getDistanceKm();
+    double getGPM() {
+        return gallonsUsed / getDistance();
     }
 
-    double getCost() {
-        return liters * pricePerLiterSAR;
+    double getTotalCost() {
+        return gallonsUsed * pricePerGallon;
     }
 
-    String getFormattedRow() {
+    String getRow() {
         return String.format("%-18s %10.0f %10.0f %9.0f %8.1f %7.2f %8.2f %10.1f %11.4f",
-                carModel, startKm, endKm, getDistanceKm(), liters, pricePerLiterSAR,
-                getCost(), getKmPerLiter(), getLiterPerKm());
+                carName, startMiles, endMiles, getDistance(), gallonsUsed, pricePerGallon,
+                getTotalCost(), getMPG(), getGPM());
     }
 }
 
 public class FuelExpense3 {
     public static void main(String[] args) {
         Fuel3[] cars = {
-            new Fuel3("Ford Taurus", 16093, 16900, 50.0, 2.18),
-            new Fuel3("Chevrolet Tahoe", 24140, 24820, 74.0, 2.33),
-            new Fuel3("Hyundai Sonata", 33796, 34814, 45.0, 2.00),
-            new Fuel3("GMC Sierra", 51500, 52250, 67.0, 2.20)
+            new Fuel3("Ford Taurus", 6200, 6700, 13.7, 2.20),           
+            new Fuel3("Chevrolet Tahoe", 7000, 7525, 20.5, 2.25),       
+            new Fuel3("Hyundai Sonata", 8000, 8600, 12.3, 2.18),        
+            new Fuel3("GMC Sierra", 9000, 9500, 19.2, 2.19)             
         };
 
         String header = String.format("%-18s %10s %10s %9s %8s %7s %8s %10s %11s",
-                "Type of Car", "Start", "End", "Distance", "Liters", "SAR", "Cost", "Km/Liter", "Liter/Km");
+                "Type of Car", "Start", "End", "Distance", "Gallons", "SAR", "Cost", "MPG", "GPM");
         String line = "----------------------------------------------------------------------------------------------------";
 
         System.out.println(header);
@@ -62,7 +60,7 @@ public class FuelExpense3 {
             writer.println(header);
             writer.println(line);
 
-            Arrays.stream(cars).map(Fuel3::getFormattedRow).forEach(row -> {
+            Arrays.stream(cars).map(Fuel3::getRow).forEach(row -> {
                 System.out.println(row);
                 writer.println(row);
             });
